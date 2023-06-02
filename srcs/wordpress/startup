@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#wp core download --allow-root
+
+cd wordpress
+if [[ ! -f "./wp-config.php" ]]
+then
+ echo "++++++The file does not exist++++++"
+ wp config create --dbhost=$WORDPRESS_DB_HOST --dbname=$WORDPRESS_DB_NAME --dbuser=$WORDPRESS_DB_USER \
+                 --dbpass=$WORDPRESS_DB_PASSWORD --allow-root
+ chmod 600 wp-config.php
+fi
+echo "hmmmm"
+service php8.2-fpm stop
+cp -r . ..
+php-fpm8.2 -F -R
