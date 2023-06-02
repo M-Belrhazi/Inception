@@ -3,7 +3,7 @@ FROM debian:bullseye
 #    && apt-get install php-cgi php-common php-fpm php-pear \
 #       php-mbstring php-zip php-net-socket php-gd php-xml-util \
 #       php-gettext php-mysql php-bcmath unzip wget git -y
-RUN apt update && apt upgrade \
+RUN apt update -y && apt upgrade -y \
     && apt install -y lsb-release ca-certificates apt-transport-https \
        software-properties-common gnupg2 unzip wget git \
     && echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" \
