@@ -1,7 +1,7 @@
 FROM debian:bullseye
 #COPY ./html /usr/share/nginx/html
 COPY default.conf /etc/nginx/conf.d/default.conf
-EXPOSE 4242:443
+EXPOSE 443:443
 RUN apt update -y \
     && apt install openssl -y \
     && apt install nginx -y \

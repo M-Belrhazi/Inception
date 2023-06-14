@@ -11,7 +11,7 @@ RUN apt update -y && apt upgrade -y \
 RUN wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 RUN apt remove apache2 php php-common php-mysql php-gmp php-curl php-intl php-mbstring php-xmlrpc \
                php-gd php-xml php-zip libapache2-mod-php -y
-RUN apt update -y && apt upgrade -y && apt install mariadb-server -y
+RUN apt update -y && apt upgrade -y && apt install mariadb-server -y && apt install mariadb-client -y
 RUN apt install php8.2 -y
 RUN apt install php8.2-common php8.2-mysql php8.2-gmp \
 		php8.2-curl php8.2-intl php8.2-mbstring \

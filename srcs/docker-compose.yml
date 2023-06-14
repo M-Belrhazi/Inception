@@ -11,7 +11,7 @@ volumes:
   driver: local
   driver_opts:
    type: none
-   device: /tmp/db
+   device: /var/local
    o: bind
 
 services:
@@ -58,7 +58,7 @@ services:
    context: ./nginx
    dockerfile: Dockerfile
   ports:
-   - "4242:443"
+   - "443:443"
   volumes:
    - wordpress_volume:/var/www/html
   networks:

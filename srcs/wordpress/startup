@@ -3,14 +3,19 @@
 #wp core download --allow-root
 
 cd wordpress
-if [[ ! -f "./wp-config.php" ]]
-then
+rm -f wp-config.php
+chmod 644 "./wp-config.php"
+while [[ ! -f "./wp-config.php" ]]
+do
  echo "++++++The file does not exist++++++"
  wp config create --dbhost=$WORDPRESS_DB_HOST --dbname=$WORDPRESS_DB_NAME --dbuser=$WORDPRESS_DB_USER \
                  --dbpass=$WORDPRESS_DB_PASSWORD --allow-root
- chmod 600 wp-config.php
-fi
+ sleep 2
+done
+chmod 644 "./wp-config.php"
 echo "hmmmm"
 service php8.2-fpm stop
 cp -r . ..
+chmod 644 "../wp-config.php"
+echo "done chmoding normally"
 php-fpm8.2 -F -R
