@@ -5,13 +5,13 @@ volumes:
   driver: local
   driver_opts:
    type: none
-   device: /data/html
+   device: /home/mbelrhaz/data/html
    o: bind
  mariadb_vol:
   driver: local
   driver_opts:
    type: none
-   device: /var/local
+   device: /home/mbelrhaz/data/db
    o: bind
 
 services:
@@ -22,10 +22,10 @@ services:
   ports:
    - "3306"
   environment:
-   MYSQL_ROOT_PASSWORD: root_password
-   MYSQL_DATABASE: db_name
-   MYSQL_USER: user_name
-   MYSQL_PASSWORD: user_password
+   MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+   MYSQL_DATABASE: $MYSQL_DATABASE
+   MYSQL_USER: $MYSQL_USER
+   MYSQL_PASSWORD: $MYSQL_PASSWORD
   restart: always
   volumes:
    - mariadb_vol:/var/lib/mysql
@@ -38,14 +38,14 @@ services:
    context: ./wordpress
    dockerfile: Dockerfile
   ports:
-   - "9000:9000"
+   - "9000"
   environment:
-   WORDPRESS_DB_HOST: mariadb:3306
-   MYSQL_ROOT_PASSWORD: root_password
-   WORDPRESS_DB_USER: user_name
-   WORDPRESS_DB_PASSWORD: user_password
-   WORDPRESS_DB_NAME: db_name
-   WORDPRESS_TABLE_PREFIX: wp_
+   WORDPRESS_DB_HOST: $WORDPRESS_DB_HOST
+   MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+   WORDPRESS_DB_USER: $WORDPRESS_DB_USER
+   WORDPRESS_DB_PASSWORD: $WORDPRESS_DB_PASSWORD
+   WORDPRESS_DB_NAME: $WORDPRESS_DB_NAME
+   WORDPRESS_TABLE_PREFIX: $WORDPRESS_TABLE_PREFIX
   volumes:
    - wordpress_volume:/var/www/html
   networks:

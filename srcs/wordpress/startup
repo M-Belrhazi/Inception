@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#wp core download --allow-root
-
 cd wordpress
 rm -f wp-config.php
 chmod 644 "./wp-config.php"
@@ -12,10 +10,8 @@ do
                  --dbpass=$WORDPRESS_DB_PASSWORD --allow-root
  sleep 2
 done
-chmod 644 "./wp-config.php"
-echo "hmmmm"
 service php8.2-fpm stop
 cp -r . ..
 chmod 644 "../wp-config.php"
-echo "done chmoding normally"
+echo "++++++The file exists and has the right permissions++++++"
 php-fpm8.2 -F -R
