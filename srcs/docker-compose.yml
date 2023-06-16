@@ -26,7 +26,7 @@ services:
    MYSQL_DATABASE: $MYSQL_DATABASE
    MYSQL_USER: $MYSQL_USER
    MYSQL_PASSWORD: $MYSQL_PASSWORD
-  restart: always
+  restart: on-failure
   volumes:
    - mariadb_vol:/var/lib/mysql
   networks:
@@ -50,7 +50,7 @@ services:
    - wordpress_volume:/var/www/html
   networks:
    - app-network
-  restart: always
+  restart: on-failure
  nginx:
   depends_on:
    - wordpress
@@ -63,6 +63,7 @@ services:
    - wordpress_volume:/var/www/html
   networks:
    - app-network
+  restart: on-failure
 
 networks:
  app-network:

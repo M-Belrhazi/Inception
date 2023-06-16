@@ -1,5 +1,4 @@
 FROM debian:bullseye
-#COPY ./html /usr/share/nginx/html
 COPY default.conf /etc/nginx/conf.d/default.conf
 EXPOSE 443:443
 RUN apt update -y \
