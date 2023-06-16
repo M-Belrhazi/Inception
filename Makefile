@@ -17,3 +17,5 @@ clean :
 	cd $(SRCS_DIR) && \
 	docker compose down && docker system prune -a
 	cd $(SRCS_DIR) && docker image rm $(docker container ls -aq)
+
+.PHONY: all clean re
